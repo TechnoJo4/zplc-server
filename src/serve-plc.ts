@@ -1,4 +1,4 @@
-import { CompatibleOpOrTombstone, DidDocument, formatDidDoc, opToData } from "./plc-lib/index.js";
+import * as plc from "./plc-lib/index.js";
 import { db } from "./db.ts";
 
 const statement = db.log?.prepare("SELECT entry FROM plc_entries WHERE did = ? ORDER BY id DESC LIMIT 1");
@@ -16,11 +16,11 @@ export default {
 
     if (pathname.startsWith("/did:")) {
       const did = pathname.substring(1);
-      const doc: DidDocument | undefined = pipe(statement.value<[entry: string]>(did),
+      const doc: plc.DidDocument | undefined = pipe(statement.value<[entry: string]>(did),
           (it: [entry: string]) => it[0],
           (it: string) => JSON.parse(it).operation,
-          (op: CompatibleOpOrTombstone) => opToData(did, op),
-          formatDidDoc);
+          (op: plc.CompatibleOpOrTombstone) => plc.opToData(did, op),
+          plc.formatDidDoc);
 
       return doc
         ? new Response(JSON.stringify(doc), { headers: { "content-type": "application/json" } })
