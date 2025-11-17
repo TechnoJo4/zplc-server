@@ -5,8 +5,9 @@ const statement = db.log?.prepare("SELECT entry FROM plc_entries WHERE did = ? O
 if (!statement) throw new Error("can't serve plc when ZPLC_NO_RAW_LOG is set");
 
 // deno-lint-ignore-file no-explicit-any
-function pipe(x: any, ...f: any): any {
-  return x !== undefined ? f.length > 1 ? pipe(f[0](x), ...f) : f[0](x) : x;
+function pipe(x: any, ...F: any): any {
+  f = F.shift();
+  return x !== undefined ? F.length > 1 ? pipe(f(x), ...F) : f(x) : x;
 }
 
 export default {
