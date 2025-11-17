@@ -1,7 +1,7 @@
 import { Database } from "@db/sqlite";
 
 function pipe<T, R>(x: T, f: (value: T) => R): R {
-  return x ? f(x) : x;
+  return x !== undefined ? f(x) : x;
 }
 
 const ids = new Database("./data/ids.db")

@@ -6,7 +6,7 @@ if (!statement) throw new Error("can't serve plc when ZPLC_NO_RAW_LOG is set");
 
 // deno-lint-ignore-file no-explicit-any
 function pipe(x: any, ...f: any): any {
-  return x ? f.length > 1 ? pipe(f[0](x), ...f) : f[0](x) : x;
+  return x !== undefined ? f.length > 1 ? pipe(f[0](x), ...f) : f[0](x) : x;
 }
 
 export default {
@@ -15,8 +15,8 @@ export default {
 
     if (pathname.startsWith("/did:")) {
       const did = pathname.substring(1);
-      const entry: string = pipe(statement.value<[entry: string]>(did), (it: [string]) => it[0]);
-      const doc: DidDocument | undefined = pipe(entry,
+      const doc: DidDocument | undefined = pipe(statement.value<[entry: string]>(did),
+          (it: [entry: string]) => it[0],
           (it: string) => JSON.parse(it).operation,
           (op: CompatibleOpOrTombstone) => opToData(did, op),
           formatDidDoc);
