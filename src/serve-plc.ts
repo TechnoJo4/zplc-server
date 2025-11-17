@@ -1,5 +1,5 @@
 import "https://char.lt/esm/pipe.ts";
-import { CompatibleOpOrTombstone, DidDocument, formatDidDoc, opToData } from "https://raw.githubusercontent.com/did-method-plc/did-method-plc/refs/heads/main/packages/lib/src/index.ts";
+import { CompatibleOpOrTombstone, DidDocument, formatDidDoc, opToData } from "npm:https://gitpkg.vercel.app/did-method-plc/did-method-plc/packages/lib?main";
 import { db } from "./db.ts";
 
 const statement = db.log?.prepare("SELECT entry FROM plc_entries WHERE did = ? ORDER BY id DESC LIMIT 1");
