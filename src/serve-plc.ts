@@ -6,7 +6,7 @@ if (!statement) throw new Error("can't serve plc when ZPLC_NO_RAW_LOG is set");
 
 // deno-lint-ignore-file no-explicit-any
 function pipe(x: any, ...F: any): any {
-  f = F.shift();
+  const f = F.shift();
   return x !== undefined ? F.length > 1 ? pipe(f(x), ...F) : f(x) : x;
 }
 
