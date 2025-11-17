@@ -1,4 +1,4 @@
-import { CompatibleOpOrTombstone, DidDocument, formatDidDoc, opToData } from "https://esm.sh/gh/did-method-plc/did-method-plc/packages/lib";
+import { CompatibleOpOrTombstone, DidDocument, formatDidDoc, opToData } from "./plc-lib/index.js";
 import { db } from "./db.ts";
 
 const statement = db.log?.prepare("SELECT entry FROM plc_entries WHERE did = ? ORDER BY id DESC LIMIT 1");
