@@ -1,4 +1,4 @@
-import "https://char.lt/esm/pipe.ts";
+import "./pipe.ts";
 import { CompatibleOpOrTombstone, DidDocument, formatDidDoc, opToData } from "https://esm.sh/gh/did-method-plc/did-method-plc/packages/lib";
 import { db } from "./db.ts";
 

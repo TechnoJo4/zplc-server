@@ -1,4 +1,4 @@
-import "https://char.lt/esm/pipe.ts";
+import "./pipe.ts";
 
 import { Database } from "@db/sqlite";
 
