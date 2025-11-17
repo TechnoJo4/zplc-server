@@ -18,5 +18,5 @@ declare global {
   }
 }
 
-Object.defineProperty(Object.prototype, "tap", { value: tap, enumerable: false, set: ()=>{} });
-Object.defineProperty(Object.prototype, "pipe", { value: pipe, enumerable: false, set: ()=>{} });
+Object.defineProperty(Object.prototype, "tap", { get: () => tap, set: () => {}, enumerable: false });
+Object.defineProperty(Object.prototype, "pipe", { get: () => pipe, set: () => {}, enumerable: false });
