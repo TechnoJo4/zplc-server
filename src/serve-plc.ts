@@ -1,4 +1,4 @@
-import * as plc from "./plc-lib/index.js";
+import * as plc from "./plc-lib/index.cjs";
 import { db } from "./db.ts";
 
 const statement = db.log?.prepare("SELECT entry FROM plc_entries WHERE did = ? ORDER BY id DESC LIMIT 1");
